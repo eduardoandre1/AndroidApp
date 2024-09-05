@@ -10,7 +10,7 @@ export default function Login() {
         <View style={styles.formContainer}>
           <Text style={styles.label}>
             <Image source={require('./assets/peso-pesado1.jpg')} style={styles.icon} />
-            E-MAIL:
+            E-MAIL: testes
           </Text>
           <TextInput style={styles.input} placeholder="Digite seu e-mail" />
           <Text style={styles.label}>
