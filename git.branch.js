@@ -1,1 +1,1 @@
-const teste = 0 
+const teste = 'eduardo' 
