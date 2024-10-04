@@ -2,11 +2,11 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './src/login/Login'; 
-//import Menu from './src/menu/Menu';
+import Menu from './src/menu/Menu';
 import CadastroAlunos from './src/cadastro/CadastroAlunos';
-//import CadastroProfessores from './src/cadastro/CadastroProfessores';
-//import ExcluirA from './src/excluir/ExcluirA';
-//import ExcluirP from './src/excluir/ExcluirP';
+import CadastroProfessores from './src/cadastro/CadastroProfessores';
+import ExcluirA from './src/excluir/ExcluirA';
+import ExcluirP from './src/excluir/ExcluirP';
 
 
 const Stack = createStackNavigator();
@@ -50,4 +50,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;
