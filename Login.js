@@ -1,28 +1,32 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Pressable, ImageBackground, Image } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Pressable, ImageBackground, Image, Button } from 'react-native';
 
 export default function Login() {
-  return (
-    <ImageBackground source={require('./assets/view-gym-room-training-sports.jpg')} style={styles.imagfundo}>
-      <View style={styles.container}>
-        <Image source={require('./assets/musculo2.jpg')} style={styles.logo} />
-        <Text style={styles.titulo}>FAÇA SEU LOGIN</Text>
-        <View style={styles.formContainer}>
-          <Text style={styles.label}>
-            <Image source={require('./assets/peso-pesado1.jpg')} style={styles.icon} />
-            E-MAIL: testes
-          </Text>
-          <TextInput style={styles.input} placeholder="Digite seu e-mail" />
-          <Text style={styles.label}>
-            <Image source={require('./assets/cadeado1.jpg')} style={styles.icon} />
-            SENHA:
-          </Text>
-          <TextInput style={styles.input} placeholder="Digite sua senha" secureTextEntry />
-          <Pressable
-            style={styles.button}
+  function SendLogin( username, password)
+  {
+  	
+  }
+	return (
+	<ImageBackground source={require('./assets/view-gym-room-training-sports.jpg')} style={styles.imagfundo}>
+	  <View style={styles.container}>
+		<Image source={require('./assets/musculo2.jpg')} style={styles.logo} />
+		<Text style={styles.titulo}>FAÇA SEU LOGIN</Text>
+		<View style={styles.formContainer}>
+		  <Text style={styles.label}>
+			<Image source={require('./assets/peso-pesado1.jpg')} style={styles.icon} />
+			E-MAIL: testes22222
+		  </Text>
+		  <TextInput style={styles.input} placeholder="Digite seu e-mail" />
+		  <Text style={styles.label}>
+			<Image source={require('./assets/cadeado1.jpg')} style={styles.icon} />
+			SENHA:
+		  </Text>
+		  <TextInput style={styles.input} placeholder="Digite sua senha" secureTextEntry />
+		  <Pressable
+			style={styles.button}
 
 		  >
-			<Text style={styles.buttonText}>Entrar</Text>
+			<Button style={styles.buttonText} onPress={alert('testdfdfse')}>Entrar</Button>
 		  </Pressable>
 		</View>
 	  </View>
