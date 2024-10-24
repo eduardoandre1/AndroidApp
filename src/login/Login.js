@@ -24,12 +24,19 @@ export default function Login() {
 		axios.post('https://strongacademiaapi.onrender.com/login',{email: email,senha:password})
 		.then((response) => 
 			{
-				navigation.navigate('Menu');
-				Alert.alert('Bem vindo');
+				console.log(response);
+				if (response.data.type === 'estudante') {
+					navigation.navigate('MenuAlunos');
+					Alert.alert('Bem vindo', 'Você entrou como aluno.');}
+				if (response.data.type === 'professor') {
+					navigation.navigate('MenuProfessores');
+					Alert.alert('Bem vindo', 'Você entrou como professor.');
+				  }
 			}).catch((error) => 
 				{
-					Alert.alert(error.message);
-					console.log(error)
+					Alert.alert(error.response.data);
+					alert(error.response.data);
+					console.log(error);
 			})
 		}
 
@@ -37,7 +44,7 @@ export default function Login() {
 		<ImageBackground source={require('../../assets/view-gym-room-training-sports.jpg')} style={styles.imagfundo}>
 			<View style={styles.container}>
 				<Image source={require('../../assets/musculo2.png')} style={styles.logo} />
-				<Text style={styles.titulo}>FAÇA SEU LOGIN 8</Text>
+				<Text style={styles.titulo}>FAÇA SEU LOGIN</Text>
 				<View style={styles.formContainer}>
 					<Text style={styles.label}>
 						<Image source={require('../../assets/peso-pesado1.png')} style={styles.icon} />
@@ -65,6 +72,8 @@ const styles = StyleSheet.create({
 		flex: 1,
 		resizeMode: 'cover',
 		justifyContent: 'center',
+		width: '100%',
+		height: '100%',
 	},
 	container: {
 		flex: 1,
@@ -82,12 +91,14 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		color: '#fff',
 		marginBottom: 20,
+		textShadowColor: 'rgba(0, 0, 0,1)',
 	},
 	formContainer: {
 		width: '100%',
 		backgroundColor: 'rgba(0, 0, 0, 0.5)',
 		padding: 20,
 		borderRadius: 10,
+		maxWidth: '600px',
 	},
 	label: {
 		fontSize: 16,
