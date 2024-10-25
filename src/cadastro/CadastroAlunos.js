@@ -41,8 +41,7 @@ export default function Cadastro() {
 			type:'estudante'})
 			.then((respost)=>
 					{
-						console.log(response);
-						navigation.navigate('Menu');
+						navigation.navigate('MenuAlunos');
 						Alert.alert('Usuarios criado ');
 					})
 

@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Pressable, FlatList, Alert, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 const ListaAlunos = () => {
 	const navigation = useNavigation();
 
+	const [alunos, setAlunos] = useState([{}])
 	
-	const [alunos, setAlunos] = useState([
-		{ id: '1', nome: 'Gabriel', sobrenome: 'Dias', email: 'gabriel@gmail.com', telefone: '21980437767', cpf: '123.456.789-00', senha: '1' },
-		{ id: '2', nome: 'Maria', sobrenome: 'Silva', email: 'maria@gmail.com', telefone: '21987654321', cpf: '987.654.321-00', senha: '2' },
-		
-	]);
+	const [atualizar,setAtulaizar] = useState (false)
+	
+	//const [alunos, setAlunos] = useState([
+	//	{ id: '1', nome: 'Gabriel', sobrenome: 'Dias', email: 'gabriel@gmail.com', telefone: '21980437767', cpf: '123.456.789-00', senha: '1' },
+	//	{ id: '2', nome: 'Maria', sobrenome: 'Silva', email: 'maria@gmail.com', telefone: '21987654321', cpf: '987.654.321-00', senha: '2' },
+	//	
+	//]);
 
 	const handleEdit = (id) => {
 		
 		navigation.navigate('EditarAluno', { alunoId: id });
 	};
 
-	const handleDelete = (id) => {
+	const handleDelete = (cpf) => {
 		Alert.alert('Excluir', 'Você tem certeza que deseja excluir este aluno?', [
 			{
 				text: 'Cancelar',
@@ -26,17 +30,26 @@ const ListaAlunos = () => {
 			{
 				text: 'Excluir',
 				onPress: () => {
-					setAlunos(alunos.filter(aluno => aluno.id !== id));
+					console.log(cpf)
+					axios.post('http://localhost:5000/delete/estudantes',{cpf:cpf})
+					.then((response) => {setAtulaizar(!atualizar)})
+					.catch((error)=> Alert.alert("não foi possivel executar esta função no Momento"))
 					Alert.alert('Sucesso', 'Aluno excluído com sucesso!');
 				},
 			},
 		]);
+		axios.post('http://localhost:5000/delete/estudantes',{cpf:cpf})
+					.then((response) => {setAtulaizar(!atualizar)})
+					.catch((error)=> {Alert.alert("não foi possivel executar esta função no Momento");console.log(error)})
 	};
 
 	const handleBack = () => {
 		navigation.navigate('MenuProfessores'); 
 	};
-
+	useEffect(()=>
+		{
+			axios.get('http://localhost:5000/estudantes').then((response)=>{setAlunos(response.data)})
+		},[atualizar])
 	return (
 		<ImageBackground source={require('../../assets/view-gym-room-training-sports.jpg')} style={styles.imagfundo}>
 				<View style={styles.container}>
@@ -46,16 +59,15 @@ const ListaAlunos = () => {
 						keyExtractor={item => item.id}
 						renderItem={({ item }) => (
 						<View style={styles.item}>
-								<Text style={styles.itemText}>{item.nome} {item.sobrenome}</Text>
-								<Text style={styles.itemText}>{item.email}</Text>
-								<Text style={styles.itemText}>{item.telefone}</Text>
-								<Text style={styles.itemText}>{item.cpf}</Text>
-								<Text style={styles.itemText}>{item.senha}</Text>
+								<Text style={styles.itemText}>Nome: {item.nome} {item.sobrenome}</Text>
+								<Text style={styles.itemText}>Email: {item.email}</Text>
+								<Text style={styles.itemText}>tel: {item.telefone}</Text>
+								<Text style={styles.itemText}>cpf: {item.cpf}</Text>
 								<View style={styles.buttonContainer}>
 								<Pressable style={styles.button} onPress={() => handleEdit(item.id)}>
 										<Text style={styles.buttonText}>Editar</Text>
 								</Pressable>
-								<Pressable style={styles.button} onPress={() => handleDelete(item.id)}>
+								<Pressable style={styles.button} onPress={() => handleDelete(item.cpf)}>
 										<Text style={styles.buttonText}>Excluir</Text>
 								</Pressable>
 								</View>

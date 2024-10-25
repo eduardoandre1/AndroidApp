@@ -41,7 +41,7 @@ export default function CadastroProfessores() {
 					{
 						console.log(respost);
 						alert('usuario criado');
-						navigation.navigate('MenuProfessor');
+						navigation.navigate('MenuProfessores');
 						Alert.alert('Usuarios criado ');
 					})
 
