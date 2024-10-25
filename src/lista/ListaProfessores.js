@@ -26,7 +26,7 @@ const ListaProfessores = () => {
 				text: 'Excluir',
 				onPress: () => {
 					console.log(cpf)
-					axios.post('http://localhost:5000/delete/professores',{cpf:cpf})
+					axios.post('https://strongacademiaapi.onrender.com/delete/professores',{cpf:cpf})
 					.then((response) => {setAtulaizar(!atualizar)})
 					.catch((error)=> Alert.alert("não foi possivel executar esta função no Momento"))
 				},
@@ -34,7 +34,7 @@ const ListaProfessores = () => {
 		])
 		;
 		console.log(cpf)
-		axios.post('http://localhost:5000/delete/professores',{cpf:cpf})
+		axios.post('https://strongacademiaapi.onrender.com/delete/professores',{cpf:cpf})
 		.then((response) => {setAtulaizar(!atualizar)})
 		.catch((error)=>{Alert.alert("não foi possivel executar esta função no Momento");console.log(error)})
 	};
@@ -44,7 +44,7 @@ const ListaProfessores = () => {
 	};
 	useEffect(()=>
 		{
-			axios.get('http://localhost:5000/professores').then((response)=>{setProfessores(response.data)})
+			axios.get('https://strongacademiaapi.onrender.com/professores').then((response)=>{setProfessores(response.data)})
 		},[atualizar])
 	return (
 		<View style={styles.container}>

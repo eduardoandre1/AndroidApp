@@ -31,14 +31,14 @@ const ListaAlunos = () => {
 				text: 'Excluir',
 				onPress: () => {
 					console.log(cpf)
-					axios.post('http://localhost:5000/delete/estudantes',{cpf:cpf})
+					axios.post('https://strongacademiaapi.onrender.com/delete/estudantes',{cpf:cpf})
 					.then((response) => {setAtulaizar(!atualizar)})
 					.catch((error)=> Alert.alert("não foi possivel executar esta função no Momento"))
 					Alert.alert('Sucesso', 'Aluno excluído com sucesso!');
 				},
 			},
 		]);
-		axios.post('http://localhost:5000/delete/estudantes',{cpf:cpf})
+		axios.post('https://strongacademiaapi.onrender.com/delete/estudantes',{cpf:cpf})
 					.then((response) => {setAtulaizar(!atualizar)})
 					.catch((error)=> {Alert.alert("não foi possivel executar esta função no Momento");console.log(error)})
 	};
@@ -48,7 +48,7 @@ const ListaAlunos = () => {
 	};
 	useEffect(()=>
 		{
-			axios.get('http://localhost:5000/estudantes').then((response)=>{setAlunos(response.data)})
+			axios.get('https://strongacademiaapi.onrender.com/estudantes').then((response)=>{setAlunos(response.data)})
 		},[atualizar])
 	return (
 		<ImageBackground source={require('../../assets/view-gym-room-training-sports.jpg')} style={styles.imagfundo}>
